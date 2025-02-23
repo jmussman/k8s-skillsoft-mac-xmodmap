@@ -9,9 +9,13 @@
 
 ## Overview
 
-This is a solution for a specific problem with the skillable Learn on Demand virual environment for
-the Building Kubernetes Skills class.
-The Microsoft Azure image does not correctly map the keyboard for Apple MacOS, so ctrl-C does not work.
+Tha Microsoft Azure image used by the *skillsoft* Building Kubernetes Skills class does not
+correctly map the keyboard for the Apple MacOS.
+This prevents control-C (^C) from functioning.
+This issue does not affect Microsoft Windows.
+
+The repository contains a keymap that solves the problem.
+Follow the instructions to install the keymap on the *skillsoft* virtual computers.
 
 ## Utilization
 
@@ -21,41 +25,28 @@ then control-C is not working;
 ```
 labadmin@Udesktop:~$ c
 ```
-1. Click on the .Xmodmap file in the files tree.
-1. Download the .Xmodmap file from this repository as Downloads/Xmodmap.txt.
-This will happen correctly if you click the download button in Chrome.
-For Firefox you may need to open the file (click the "Raw" link), right-click on the
-page, select "Save Page As...", pick the Downloads folder, and change the name to Xmodmap.txt.
+1. Click on the Xmodmap.txt file in the files tree.
 
+1. Click the download button and save the file in your *Downloads* folder.
 1. Open a terminal window.
-1. Copy the file to the home directory as .Xmodmap *labadmin@Udesktop:~$* is the initial prompt:
+1. Copy the file to the home directory as .Xmodmap:
 ```
-labadmin@Udesktop:~$ cp ~labadmin/Downloads/Xmodmap.txt .Xmodmap
+labadmin@Udesktop:~$ cp ~/Downloads/Xmodmap.txt .Xmodmap
 ```
-1. Edit the ~/.bashrc file and add a line at the end of the file to invoke .Xmodmap:
-```
-xmodmap ~/.Xmodmap
-```
-1. Sudo a bash shell and repeat all of this for the root user:
-```
-labadmin@Udesktop:~$ sudo bash
-[sudo] password for labadmin:
-root@Udesktop:~# 
-```
-1. Copy the file to the Labadmin and root home directories
-```
-root@Udesktop:~# cp ~labadmin/Downloads/Xmodmap.txt ~root/.Xmodmap
-```
-1. Edit the ~root/.bashrc file and add the following line to the end:
+1. Edit the *.bashrc* file in the home directory (~/.bashrc) and add
+a line at the end of the file to invoke .Xmodmap:
 ```
 xmodmap ~/.Xmodmap
 ```
-1. Exit the root shell:
+1. Copy the file to the root home directories
 ```
-root@Udesktop:~# exit
-labadmin@Udesktop:~$
+labadmin@Udesktop:~$ sudo cp ~/Downloads/Xmodmap.txt ~root/.Xmodmap
 ```
-1. Source the .bashrc file in the original shell to apply the keyboard map:
+1. Sudo and edit the ~root/.bashrc file and add the following line to the end:
+```
+xmodmap ~/.Xmodmap
+```
+1. Source the .bashrc file to apply the keyboard map in terminal window:
 ```
 labadmin@Udesktop:~$ . ~/.bashrc
 ```
